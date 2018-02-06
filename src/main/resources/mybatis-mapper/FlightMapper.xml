@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aop.mapper.FlightMapper" >
+  <resultMap id="BaseResultMap" type="com.aop.domain.Flight" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="schedular_id" property="schedularId" jdbcType="INTEGER" />
+    <result column="from_date" property="fromDate" jdbcType="TIMESTAMP" />
+    <result column="saloon_seat_left" property="saloonSeatLeft" jdbcType="INTEGER" />
+    <result column="business_seat_left" property="businessSeatLeft" jdbcType="INTEGER" />
+    <result column="economy_seat_left" property="economySeatLeft" jdbcType="INTEGER" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, schedular_id, from_date, saloon_seat_left, business_seat_left, economy_seat_left, 
+    discount, gmt_create, gmt_modified
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aop.domain.FlightExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flight
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flight
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flight
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aop.domain.FlightExample" >
+    delete from flight
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aop.domain.Flight" >
+    insert into flight (id, schedular_id, from_date, 
+      saloon_seat_left, business_seat_left, economy_seat_left, 
+      discount, gmt_create, gmt_modified
+      )
+    values (#{id,jdbcType=INTEGER}, #{schedularId,jdbcType=INTEGER}, #{fromDate,jdbcType=TIMESTAMP}, 
+      #{saloonSeatLeft,jdbcType=INTEGER}, #{businessSeatLeft,jdbcType=INTEGER}, #{economySeatLeft,jdbcType=INTEGER}, 
+      #{discount,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aop.domain.Flight" >
+    insert into flight
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="schedularId != null" >
+        schedular_id,
+      </if>
+      <if test="fromDate != null" >
+        from_date,
+      </if>
+      <if test="saloonSeatLeft != null" >
+        saloon_seat_left,
+      </if>
+      <if test="businessSeatLeft != null" >
+        business_seat_left,
+      </if>
+      <if test="economySeatLeft != null" >
+        economy_seat_left,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="schedularId != null" >
+        #{schedularId,jdbcType=INTEGER},
+      </if>
+      <if test="fromDate != null" >
+        #{fromDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saloonSeatLeft != null" >
+        #{saloonSeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="businessSeatLeft != null" >
+        #{businessSeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="economySeatLeft != null" >
+        #{economySeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aop.domain.FlightExample" resultType="java.lang.Integer" >
+    select count(*) from flight
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update flight
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.schedularId != null" >
+        schedular_id = #{record.schedularId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fromDate != null" >
+        from_date = #{record.fromDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.saloonSeatLeft != null" >
+        saloon_seat_left = #{record.saloonSeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessSeatLeft != null" >
+        business_seat_left = #{record.businessSeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="record.economySeatLeft != null" >
+        economy_seat_left = #{record.economySeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="record.discount != null" >
+        discount = #{record.discount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModified != null" >
+        gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update flight
+    set id = #{record.id,jdbcType=INTEGER},
+      schedular_id = #{record.schedularId,jdbcType=INTEGER},
+      from_date = #{record.fromDate,jdbcType=TIMESTAMP},
+      saloon_seat_left = #{record.saloonSeatLeft,jdbcType=INTEGER},
+      business_seat_left = #{record.businessSeatLeft,jdbcType=INTEGER},
+      economy_seat_left = #{record.economySeatLeft,jdbcType=INTEGER},
+      discount = #{record.discount,jdbcType=DECIMAL},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aop.domain.Flight" >
+    update flight
+    <set >
+      <if test="schedularId != null" >
+        schedular_id = #{schedularId,jdbcType=INTEGER},
+      </if>
+      <if test="fromDate != null" >
+        from_date = #{fromDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saloonSeatLeft != null" >
+        saloon_seat_left = #{saloonSeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="businessSeatLeft != null" >
+        business_seat_left = #{businessSeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="economySeatLeft != null" >
+        economy_seat_left = #{economySeatLeft,jdbcType=INTEGER},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DECIMAL},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aop.domain.Flight" >
+    update flight
+    set schedular_id = #{schedularId,jdbcType=INTEGER},
+      from_date = #{fromDate,jdbcType=TIMESTAMP},
+      saloon_seat_left = #{saloonSeatLeft,jdbcType=INTEGER},
+      business_seat_left = #{businessSeatLeft,jdbcType=INTEGER},
+      economy_seat_left = #{economySeatLeft,jdbcType=INTEGER},
+      discount = #{discount,jdbcType=DECIMAL},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
