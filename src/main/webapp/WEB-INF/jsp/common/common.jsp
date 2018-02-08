@@ -9,11 +9,24 @@
     <!-- FONT AWESOME-->
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/FontAwesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/FontAwesome/css/font-awesome-ie7.min.css"/>
+    <!-- foundation css -->
 
-</head>
-<body>
+    <!-- toastr -->
+    <link rel="stylesheet" type="text/css" href="${contextPath}/resources/vendor/toastr/dist/css/toastr.css"/>
+
+    <!-- =============== VENDOR JS ===============-->
+    <!-- jQuery -->
+    <script type="text/javascript" src="${contextPath}/resources/js/jquery.min.js"></script>
+    <!-- foundation JS -->
+
+    <!-- toastr -->
+    <script type="text/javascript" src="${contextPath}/resources/vendor/toastr/dist/js/toastr.min.js"/>
+
     <script type="text/javascript">
 
     </script>
+</head>
+<body>
+
 </body>
 </html>

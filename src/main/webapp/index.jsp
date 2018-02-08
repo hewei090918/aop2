@@ -3,12 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>机票预订系统-主页</title>
-    <script type="text/javascript">
-
-    </script>
 </head>
 <body>
 欢迎来到这里!
-项目根路径是：${contextPath}
+<h3> <a href="login/Alice">进入登录页</a></h3>
+<h3> <a href="agent">进入代理商管理页</a></h3>
 </body>
 </html>

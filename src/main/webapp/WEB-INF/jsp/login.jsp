@@ -5,6 +5,6 @@
     <title>机票预订系统-登录页</title>
 </head>
 <body>
-这里是登录页
+Hello: ${actionBean.name} ,这里是登录页
 </body>
 </html>
